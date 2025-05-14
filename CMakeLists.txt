@@ -7,7 +7,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(link-encoder
     src/main.cpp
-    src/url_encoder.cpp
+    libs/url_encoder/src/url_encoder.cpp
 )
 
-target_include_directories(link-encoder PRIVATE include) 
+target_include_directories(link-encoder PRIVATE libs/url_encoder/include) 
