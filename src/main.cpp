@@ -3,6 +3,9 @@
 #include <string>
 #include <limits>
 
+/**
+ * @brief Выводит меню программы
+ */
 void printMenu() {
     std::cout << "\nМеню URL Кодировщика/Декодировщика:\n"
               << "1. Закодировать строку\n"
@@ -11,11 +14,18 @@ void printMenu() {
               << "Введите ваш выбор (1-3): ";
 }
 
+/**
+ * @brief Очищает буфер ввода
+ */
 void clearInputBuffer() {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
+/**
+ * @brief Точка входа в программу
+ * @return 0 при успешном завершении, 1 при ошибке
+ */
 int main() {
     try {
         while (true) {

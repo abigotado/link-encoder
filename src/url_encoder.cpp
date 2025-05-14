@@ -42,7 +42,7 @@ std::string UrlEncoder::encode(const char* input, size_t length) {
     }
 
     std::string result;
-    result.reserve(length * 3); // Maximum possible size after encoding
+    result.reserve(length * 3);
 
     std::for_each(input, input + length, [&result](char c) {
         if (isUrlSafe(c)) {
@@ -74,7 +74,6 @@ std::string UrlEncoder::decode(const char* input, size_t length) {
     std::string result;
     result.reserve(length);
 
-    // Find all percent signs
     std::vector<size_t> percentPositions;
     std::for_each(input, input + length, [&percentPositions, input](const char& c) {
         if (c == '%') {
@@ -82,16 +81,12 @@ std::string UrlEncoder::decode(const char* input, size_t length) {
         }
     });
 
-    // Process the string in chunks
     size_t lastPos = 0;
     std::for_each(percentPositions.begin(), percentPositions.end(), 
         [&](size_t pos) {
-            // Copy characters before the percent sign
             std::copy(input + lastPos, input + pos, std::back_inserter(result));
             
-            // Check if we have enough characters for a hex code
             if (pos + 2 < length) {
-                // Check if the next two characters are valid hex digits
                 if (std::isxdigit(input[pos + 1]) && std::isxdigit(input[pos + 2])) {
                     result += hexToChar(input + pos + 1);
                     lastPos = pos + 3;
@@ -103,7 +98,6 @@ std::string UrlEncoder::decode(const char* input, size_t length) {
             }
         });
 
-    // Copy remaining characters
     std::copy(input + lastPos, input + length, std::back_inserter(result));
 
     return result;
