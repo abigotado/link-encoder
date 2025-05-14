@@ -4,11 +4,11 @@
 #include <limits>
 
 void printMenu() {
-    std::cout << "\nURL Encoder/Decoder Menu:\n"
-              << "1. Encode string\n"
-              << "2. Decode string\n"
-              << "3. Exit\n"
-              << "Enter your choice (1-3): ";
+    std::cout << "\nМеню URL Кодировщика/Декодировщика:\n"
+              << "1. Закодировать строку\n"
+              << "2. Декодировать строку\n"
+              << "3. Выход\n"
+              << "Введите ваш выбор (1-3): ";
 }
 
 void clearInputBuffer() {
@@ -29,30 +29,30 @@ int main() {
             }
 
             std::string input;
-            std::cout << "Enter the string: ";
+            std::cout << "Введите строку: ";
             std::getline(std::cin, input);
 
             try {
                 switch (choice) {
                     case 1: {
                         std::string encoded = UrlEncoder::encode(input);
-                        std::cout << "Encoded result: " << encoded << std::endl;
+                        std::cout << "Закодированный результат: " << encoded << std::endl;
                         break;
                     }
                     case 2: {
                         std::string decoded = UrlEncoder::decode(input);
-                        std::cout << "Decoded result: " << decoded << std::endl;
+                        std::cout << "Декодированный результат: " << decoded << std::endl;
                         break;
                     }
                     default:
-                        std::cout << "Invalid choice. Please try again.\n";
+                        std::cout << "Неверный выбор. Пожалуйста, попробуйте снова.\n";
                 }
             } catch (const std::exception& e) {
-                std::cerr << "Error: " << e.what() << std::endl;
+                std::cerr << "Ошибка: " << e.what() << std::endl;
             }
         }
     } catch (const std::exception& e) {
-        std::cerr << "Fatal error: " << e.what() << std::endl;
+        std::cerr << "Критическая ошибка: " << e.what() << std::endl;
         return 1;
     }
 
